@@ -1,17 +1,17 @@
 {
   "name": "replicant-electron-starter",
-  "description": "Hello World!",
   "version": "0.0.1",
+  "description": "Hello World!",
+  "private": true,
   "main": "target/main.js",
   "scripts": {
     "start": "electron .",
-    "shadow:dev": "shadow-cljs watch main",
-    "shadow:compile": "shadow-cljs compile main",
-    "shadow:release": "shadow-cljs release main",
-    "shadow:repl": "shadow-cljs cljs-repl main",
-    "shadow:clean": "rm -rf .shadow-cljs target"
+    "dev": "shadow-cljs watch main",
+    "build": "shadow-cljs compile main",
+    "build:release": "shadow-cljs release main",
+    "repl": "shadow-cljs cljs-repl main",
+    "clean": "rm -rf .shadow-cljs target"
   },
-  "private": true,
   "devDependencies": {
     "electron": "^36.5.0",
     "shadow-cljs": "^3.1.7"
