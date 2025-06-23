@@ -8,13 +8,13 @@
     (.loadFile win "resources/public/index.html")))
 
 (defn main []
-  (.then (.whenReady app)
-         (fn []
-           (create-window)
-           (.on app "activate" 
-                (fn []
-                  (when (= (.-length (.getAllWindows BrowserWindow)) 0)
-                    (create-window))))))
+  (-> (.whenReady app)
+      (.then (fn []
+               (create-window)
+               (.on app "activate" 
+                    (fn []
+                      (when (zero? (.-length (.getAllWindows BrowserWindow)))
+                        (create-window)))))))
   
   (.on app "window-all-closed" 
        (fn []
