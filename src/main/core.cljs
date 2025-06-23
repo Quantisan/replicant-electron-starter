@@ -1,13 +1,11 @@
 (ns main.core
   (:require ["electron/main" :refer [app BrowserWindow]]))
 
-(def main-window (atom nil))
-
 (defn create-window []
-  (reset! main-window (BrowserWindow.
-                        (clj->js {:width 800
-                                  :height 600})))
-  (.loadFile @main-window "resources/public/index.html"))
+  (let [win (BrowserWindow.
+              (clj->js {:width 800
+                        :height 600}))]
+    (.loadFile win "resources/public/index.html")))
 
 (defn main []
   (.then (.whenReady app)
