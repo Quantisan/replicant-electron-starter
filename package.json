@@ -1,0 +1,14 @@
+{
+  "name": "replicant-electron-starter",
+  "description": "Hello World!",
+  "version": "0.0.1",
+  "main": "resources/public/js/main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "private": true,
+  "devDependencies": {
+    "electron": "^36.5.0",
+    "shadow-cljs": "^3.1.7"
+  }
+}
