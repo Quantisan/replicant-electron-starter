@@ -1,27 +1,24 @@
 (ns main.core
-  (:require ["electron" :refer [app BrowserWindow crashReporter]]))
+  (:require ["electron/main" :refer [app BrowserWindow]]))
 
 (def main-window (atom nil))
 
-(defn init-browser []
+(defn create-window []
   (reset! main-window (BrowserWindow.
                         (clj->js {:width 800
-                                  :height 600
-                                  :webPreferences
-                                  {:nodeIntegration true}})))
-  ; Path is relative to the compiled js file (main.js in our case)
-  (.loadURL ^js/electron.BrowserWindow @main-window (str "file://" js/__dirname "/public/index.html"))
-  (.on ^js/electron.BrowserWindow @main-window "closed" #(reset! main-window nil)))
+                                  :height 600})))
+  (.loadFile @main-window "resources/public/index.html"))
 
 (defn main []
-  ; CrashReporter can just be omitted
-  (.start crashReporter
-          (clj->js
-           {:companyName "MyAwesomeCompany"
-            :productName "MyAwesomeApp"
-            :submitURL "https://example.com/submit-url"
-            :autoSubmit false}))
-
-  (.on app "window-all-closed" #(when-not (= js/process.platform "darwin")
-                                  (.quit app)))
-  (.on app "ready" init-browser))
+  (.then (.whenReady app)
+         (fn []
+           (create-window)
+           (.on app "activate" 
+                (fn []
+                  (when (= (.-length (.getAllWindows BrowserWindow)) 0)
+                    (create-window))))))
+  
+  (.on app "window-all-closed" 
+       (fn []
+         (when-not (= (.-platform js/process) "darwin")
+           (.quit app)))))
