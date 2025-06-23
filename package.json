@@ -2,9 +2,14 @@
   "name": "replicant-electron-starter",
   "description": "Hello World!",
   "version": "0.0.1",
-  "main": "resources/public/js/main.js",
+  "main": "target/main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "shadow:dev": "shadow-cljs watch main",
+    "shadow:compile": "shadow-cljs compile main",
+    "shadow:release": "shadow-cljs release main",
+    "shadow:repl": "shadow-cljs cljs-repl main",
+    "shadow:clean": "rm -rf .shadow-cljs target"
   },
   "private": true,
   "devDependencies": {
