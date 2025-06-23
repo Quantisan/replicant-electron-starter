@@ -11,12 +11,10 @@
   (-> (.whenReady app)
       (.then (fn []
                (create-window)
-               (.on app "activate" 
-                    (fn []
-                      (when (zero? (.-length (.getAllWindows BrowserWindow)))
-                        (create-window)))))))
-  
-  (.on app "window-all-closed" 
-       (fn []
-         (when-not (= (.-platform js/process) "darwin")
-           (.quit app)))))
+               (.on app "activate"
+                    #(when (zero? (.-length (.getAllWindows BrowserWindow)))
+                       (create-window))))))
+
+  (.on app "window-all-closed"
+       #(when-not (= (.-platform js/process) "darwin")
+          (.quit app))))
