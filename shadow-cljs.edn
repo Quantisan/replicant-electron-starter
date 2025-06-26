@@ -1,11 +1,14 @@
 ;; shadow-cljs configuration
 {:source-paths ["src"]
 
- :dependencies
- []
+ :dependencies [[no.cjohansen/replicant "2025.06.21"]]
 
  :builds
- {:main
-  {:target :node-script
-   :output-to "target/main.js"
-   :main main.core/main}}}
+ {:main {:target :node-script
+         :output-to "target/main.js"
+         :main main.core/main}
+
+  :renderer {:target :browser
+             :output-dir "resources/public/compiled-js"
+             :asset-path "js"
+             :modules {:renderer {:init-fn renderer.core/start!}}}}}
