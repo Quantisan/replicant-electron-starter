@@ -7,12 +7,13 @@
    "Node.js (v" (:node versions) "), "
    "and Electron (v" (:electron versions) ")"])
 
+(defn get-versions []
+  (when-let [versions-api (.-versions js/window)]
+    {:chrome   ((.chrome versions-api))
+     :node     ((.node versions-api))
+     :electron ((.electron versions-api))}))
+
 (defn start! []
-  ;; In the renderer context, the exposed API should be directly on window
-  (let [versions-api (.-versions js/window)
-        versions {:chrome ((.-chrome versions-api))
-                  :node ((.-node versions-api))
-                  :electron ((.-electron versions-api))}]
+  (when-let [versions (get-versions)]
     (r/render (js/document.getElementById "info")
               (version-info versions))))
-
