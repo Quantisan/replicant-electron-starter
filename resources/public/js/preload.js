@@ -1,16 +1,7 @@
-console.log('Preload script is running!');
 const { contextBridge } = require("electron/renderer");
 
-console.log('contextBridge:', contextBridge);
-console.log('process.versions:', process.versions);
-
-try {
-	contextBridge.exposeInMainWorld("versions", {
-		node: () => process.versions.node,
-		chrome: () => process.versions.chrome,
-		electron: () => process.versions.electron,
-	});
-	console.log('contextBridge.exposeInMainWorld completed successfully');
-} catch (error) {
-	console.error('Error in contextBridge.exposeInMainWorld:', error);
-}
+contextBridge.exposeInMainWorld("versions", {
+	node: () => process.versions.node,
+	chrome: () => process.versions.chrome,
+	electron: () => process.versions.electron,
+});
