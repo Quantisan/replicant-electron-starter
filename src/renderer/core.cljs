@@ -9,9 +9,9 @@
 
 (defn get-versions []
   (when-let [versions-api (.-versions js/window)]
-    {:chrome   ((.chrome versions-api))
-     :node     ((.node versions-api))
-     :electron ((.electron versions-api))}))
+    {:chrome   (.chrome versions-api)
+     :node     (.node versions-api)
+     :electron (.electron versions-api)}))
 
 (defn start! []
   (when-let [versions (get-versions)]
