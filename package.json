@@ -6,11 +6,11 @@
   "main": "target/main.js",
   "scripts": {
     "start": "electron .",
-    "dev": "shadow-cljs watch main",
-    "build": "shadow-cljs compile main",
-    "build:release": "shadow-cljs release main",
+    "dev": "shadow-cljs watch main renderer",
+    "build": "shadow-cljs compile main renderer",
+    "build:release": "shadow-cljs release main renderer",
     "repl": "shadow-cljs cljs-repl main",
-    "clean": "rm -rf .shadow-cljs target"
+    "clean": "rm -rf .shadow-cljs target resources/public/compiled-js"
   },
   "devDependencies": {
     "electron": "^36.5.0",

@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
+      content="default-src 'self'; script-src 'self' 'unsafe-eval'"
     />
     <meta
       http-equiv="X-Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
+      content="default-src 'self'; script-src 'self' 'unsafe-eval'"
     />
     <title>Hello from Electron renderer!</title>
   </head>
@@ -17,5 +17,5 @@
     <p>👋</p>
     <p id="info"></p>
   </body>
-  <script src="js/renderer.js"></script>
+  <script src="compiled-js/renderer.js"></script>
 </html>
