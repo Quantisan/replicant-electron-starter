@@ -1,6 +1,10 @@
 (ns main.core
   (:require ["electron/main" :refer [app BrowserWindow]]
-            ["path" :as path]))
+            ["path" :as path]
+            ["electron-reload" :as electron-reload]))
+
+(electron-reload (.cwd js/process) #js {:ignored #"node_modules|[/\\]\.|target"})
+
 
 (defn create-window []
   (let [win (BrowserWindow.
