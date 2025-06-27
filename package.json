@@ -1,20 +1,21 @@
 {
-  "name": "replicant-electron-starter",
-  "version": "0.0.1",
-  "description": "Hello World!",
-  "private": true,
-  "main": "target/main.js",
-  "scripts": {
-    "start": "electron .",
-    "dev": "shadow-cljs watch main renderer",
-    "build": "shadow-cljs compile main renderer",
-    "build:release": "shadow-cljs release main renderer",
-    "repl": "shadow-cljs cljs-repl main",
-    "clean": "rm -rf .shadow-cljs target resources/public/compiled-js"
-  },
-  "devDependencies": {
-    "electron": "^36.5.0",
-    "electron-reload": "^2.0.0-alpha.1",
-    "shadow-cljs": "^3.1.7"
-  }
+	"name": "replicant-electron-starter",
+	"version": "0.0.1",
+	"description": "Hello World!",
+	"private": true,
+	"main": "target/main.js",
+	"scripts": {
+		"start": "electron .",
+		"dev": "concurrently \"shadow-cljs watch main renderer\" \"sleep 10 && electron .\"",
+		"build": "shadow-cljs compile main renderer",
+		"build:release": "shadow-cljs release main renderer",
+		"repl": "shadow-cljs cljs-repl main",
+		"clean": "rm -rf .shadow-cljs target resources/public/compiled-js"
+	},
+	"devDependencies": {
+		"concurrently": "^9.2.0",
+		"electron": "^36.5.0",
+		"electron-reload": "^2.0.0-alpha.1",
+		"shadow-cljs": "^3.1.7"
+	}
 }
